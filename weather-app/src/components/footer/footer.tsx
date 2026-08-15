@@ -27,16 +27,11 @@ export const Footer = () => {
               <br />
               Yes, completely free, no account required.
             </li>
-            <li>
+            {/* <li>
               <span className="font-medium text-gray-800">Where does the data come from?</span>
               <br />
               Live weather data sourced from Open-Meteo, using UK Met Office models.
-            </li>
-            <li>
-              <span className="font-medium text-gray-800">Can I search other countries?</span>
-              <br />
-              Yes, city search works worldwide. Postcode search currently supports UK postcodes only.
-            </li>
+            </li> */}
           </ul>
         </div>
 

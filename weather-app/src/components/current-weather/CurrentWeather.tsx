@@ -1,19 +1,19 @@
-import { useWeatherTheme } from '../../context/WeatherThemeContext';
+import { useWeatherInfo } from '../../context/WeatherContext';
 import type { LocationResult } from '../../types/location.types';
-import type { WeatherData } from '../../types/weather.types';
 import { SearchBar } from '../search-bar/SearchBar';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
 export const CurrentWeather = (props: {
-  data: WeatherData | undefined;
   onLocationSelect: (location: LocationResult) => void;
 }) => {
-  if (props.data === undefined) {
+
+  const { theme, isWeatherLoading, weatherData } = useWeatherInfo();
+
+  if (weatherData === undefined) {
     return null;
   }
 
-  const theme = useWeatherTheme();
-  const { location, currentTemp, windSpeed, humidity, currentCondition } = props.data;
+  const { location, currentTemp, windSpeed, humidity, currentCondition } = weatherData;
 
   const renderInfo = () => {
     return (
@@ -35,7 +35,12 @@ export const CurrentWeather = (props: {
             {currentTemp}°
           </p>
 
-          <WeatherCondition code={currentCondition} textClassName={theme.textColor} iconClassName="h-20 w-20" animate />
+          <WeatherCondition
+            code={currentCondition}
+            textClassName={theme.textColor}
+            iconClassName="h-20 w-20"
+            animate
+          />
         </div>
 
         <div className={`mt-2 flex gap-6 text-sm ${theme.accentColor}`}>
@@ -47,9 +52,9 @@ export const CurrentWeather = (props: {
   };
 
   return (
- <div className="sticky top-0 z-10 flex flex-col gap-4 bg-gradient-to-b from-amber-100 rounded-xl via-sky-200 to-blue-300 md:top-4 md:w-80 md:flex-shrink-0">
-  <SearchBar onLocationSelect={props.onLocationSelect} />
-  {renderInfo()}
-</div>
+    <div className="sticky top-0 z-10 flex flex-col gap-4 bg-gradient-to-b from-amber-100 rounded-xl via-sky-200 to-blue-300 md:top-4 md:w-100 md:flex-shrink-0">
+      <SearchBar onLocationSelect={props.onLocationSelect} />
+      {renderInfo()}
+    </div>
   );
 };

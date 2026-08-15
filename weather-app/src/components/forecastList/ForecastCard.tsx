@@ -1,9 +1,9 @@
-import { useWeatherInfo } from '../../context/WeatherContext';
+import { useWeather } from '../../context/WeatherContext';
 import type { DayForecast } from '../../types/weather.types';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
 export const ForecastCard = ({ forecast }: { forecast: DayForecast }) => {
-  const { theme } = useWeatherInfo({ conditionCode: forecast.condition });
+  const theme = useWeather({ conditionCode: forecast.condition });
 
   return (
     <div
@@ -11,7 +11,7 @@ export const ForecastCard = ({ forecast }: { forecast: DayForecast }) => {
     >
       <span className={`text-sm font-medium ${theme.textColor}`}>{forecast.dayLabel}</span>
 
-      <WeatherCondition code={forecast.condition} textClassName={theme.textColor} iconClassName="h-10 w-10" animate />
+      <WeatherCondition code={forecast.condition} iconClassName="h-10 w-10" animate />
 
       <span className={`text-right text-sm font-medium ${theme.textColor}`}>
         {forecast.tempMax}° / {forecast.tempMin}°

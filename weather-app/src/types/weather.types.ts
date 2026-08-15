@@ -40,9 +40,9 @@ export interface WeatherTheme {
   accentColor: string;
 }
 
-export interface WeatherThemeProviderProps {
-  conditionCode: number | null;
-  isDaytime: boolean | null;
+export interface WeatherProviderProps {
+  weatherData: WeatherData | undefined;
+  isWeatherLoading: boolean;
   children: React.ReactNode;
 }
 

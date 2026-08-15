@@ -1,17 +1,16 @@
+import { useWeatherInfo } from '../../context/WeatherContext';
 import { ForecastCard } from './ForecastCard';
-import type { DayForecast } from '../../types/weather.types';
 
-interface ForecastListProps {
-  forecasts: DayForecast[] | undefined;
-}
+export const ForecastList = () => {
 
-export const ForecastList = ({ forecasts }: ForecastListProps) => {
-  if (!forecasts || forecasts.length === 0) {
+  const { weatherData } = useWeatherInfo();
+  const forecast = weatherData?.forecast;
+  if (!forecast || forecast.length === 0) {
     return null;
   }
   return (
     <div className="flex flex-1 w-full flex-col gap-2">
-      {forecasts.map((forecast, index) => (
+      {forecast.map((forecast, index) => (
         <ForecastCard key={index} forecast={forecast} />
       ))}
     </div>
