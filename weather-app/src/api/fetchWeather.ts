@@ -1,5 +1,3 @@
-// api/weatherApi.ts — update the request URL and the return object
-
 import { WEATHER_API_BASE } from '../config/apiConfig.ts.ts';
 import type { WeatherApiResponse, WeatherData } from '../types/weather.types.ts';
 import { fetchJson } from './fetchJson.ts';
