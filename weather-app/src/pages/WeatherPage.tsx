@@ -27,7 +27,7 @@ export const WeatherPage = () => {
 
   return (
     <WeatherThemeProvider
-      conditionCode={data?.currentConditionCode ?? null}
+      conditionCode={data?.currentCondition ?? null}
       isDaytime={data?.isDaytime ?? null}
     >
     <div className="min-h-screen bg-gradient-to-b from-amber-100 via-sky-200 to-blue-300">

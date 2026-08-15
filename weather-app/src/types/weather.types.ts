@@ -19,7 +19,6 @@ export interface WeatherData {
   location: string;
   currentTemp: number;
   currentCondition: number;
-  currentConditionCode: number;
   windSpeed: number;
   humidity: number;
   isDaytime: boolean; 

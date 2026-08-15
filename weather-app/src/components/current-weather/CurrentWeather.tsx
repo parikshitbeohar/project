@@ -13,7 +13,7 @@ export const CurrentWeather = (props: {
   }
 
   const theme = useWeatherTheme();
-  const { location, currentTemp, windSpeed, humidity, currentConditionCode } = props.data;
+  const { location, currentTemp, windSpeed, humidity, currentCondition } = props.data;
 
   const renderInfo = () => {
     return (
@@ -35,7 +35,7 @@ export const CurrentWeather = (props: {
             {currentTemp}°
           </p>
 
-          <WeatherCondition code={currentConditionCode} textClassName={theme.textColor} iconClassName="h-20 w-20" animate />
+          <WeatherCondition code={currentCondition} textClassName={theme.textColor} iconClassName="h-20 w-20" animate />
         </div>
 
         <div className={`mt-2 flex gap-6 text-sm ${theme.accentColor}`}>

@@ -28,7 +28,6 @@ export const fetchWeather = async (
     location: locationName,
     currentTemp: Math.round(raw.current.temperature_2m),
     currentCondition: raw.current.weather_code,
-    currentConditionCode: raw.current.weather_code,
     windSpeed: raw.current.wind_speed_10m,
     humidity: raw.current.relative_humidity_2m,
     isDaytime,
