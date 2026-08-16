@@ -1,9 +1,9 @@
-import { useWeatherInfo } from '../../context/WeatherContext';
+import { useWeatherTheme } from '../../context/WeatherContext';
 import type { DayForecast } from '../../types/weather.types';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
 export const ForecastCard = ({ forecast }: { forecast: DayForecast }) => {
-  const { theme } = useWeatherInfo({ conditionCode: forecast.condition });
+  const theme = useWeatherTheme({ conditionCode: forecast.condition });
 
   return (
     <div

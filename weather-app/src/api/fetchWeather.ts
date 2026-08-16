@@ -1,4 +1,4 @@
-import { WEATHER_API_BASE } from '../config/apiConfig.ts.ts';
+import { WEATHER_API_BASE } from '../config/apiConfig.ts';
 import type { WeatherApiResponse, WeatherData } from '../types/weather.types.ts';
 import { fetchJson } from './fetchJson.ts';
 

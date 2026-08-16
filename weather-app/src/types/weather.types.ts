@@ -42,7 +42,6 @@ export interface WeatherTheme {
 
 export interface WeatherProviderProps {
   weatherData: WeatherData | undefined;
-  isWeatherLoading: boolean;
   children: React.ReactNode;
 }
 

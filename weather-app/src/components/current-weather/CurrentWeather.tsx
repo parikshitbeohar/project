@@ -1,18 +1,9 @@
-import { useWeatherInfo } from '../../context/WeatherContext';
-import type { LocationResult } from '../../types/location.types';
-import { SearchBar } from '../search-bar/SearchBar';
+import { useWeatherTheme } from '../../context/WeatherContext';
+import type { WeatherData } from '../../types/weather.types';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
-export const CurrentWeather = (props: {
-  onLocationSelect: (location: LocationResult) => void;
-}) => {
-
-  const { theme, isWeatherLoading, weatherData } = useWeatherInfo();
-
-  if (weatherData === undefined) {
-    return null;
-  }
-
+export const CurrentWeather = ({ weatherData }: { weatherData: WeatherData }) => {
+  const theme = useWeatherTheme();
   const { location, currentTemp, windSpeed, humidity, currentCondition } = weatherData;
 
   const renderInfo = () => {
@@ -51,10 +42,5 @@ export const CurrentWeather = (props: {
     );
   };
 
-  return (
-    <div className="sticky top-0 z-10 flex flex-col gap-4 bg-gradient-to-b from-amber-100 rounded-xl via-sky-200 to-blue-300 md:top-4 md:w-100 md:flex-shrink-0">
-      <SearchBar onLocationSelect={props.onLocationSelect} />
-      {renderInfo()}
-    </div>
-  );
+  return renderInfo();
 };

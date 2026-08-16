@@ -1,5 +1,3 @@
-// hooks/useWeather.ts
-
 import useSWR from 'swr';
 import type { WeatherData } from '../types/weather.types';
 import { fetchWeather } from '../api/fetchWeather';

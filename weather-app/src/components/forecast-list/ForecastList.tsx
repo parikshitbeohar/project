@@ -1,9 +1,7 @@
-import { useWeatherInfo } from '../../context/WeatherContext';
+import type { WeatherData } from '../../types/weather.types';
 import { ForecastCard } from './ForecastCard';
 
-export const ForecastList = () => {
-
-  const { weatherData } = useWeatherInfo();
+export const ForecastList = ({ weatherData }: { weatherData: WeatherData }) => {
   const forecast = weatherData?.forecast;
   if (!forecast || forecast.length === 0) {
     return null;
