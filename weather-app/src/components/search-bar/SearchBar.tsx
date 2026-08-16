@@ -6,8 +6,7 @@ import type { LocationResult } from '../../types/location.types';
 
 interface SearchBarProps {
   onLocationSelect: (location: LocationResult) => void;
-  
-}
+  }
 
 export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState('');
@@ -19,7 +18,7 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const debouncedValue = useDebounce(inputValue, 400);
   const queryType = isPostcode(debouncedValue) ? 'postcode' : 'city';
 
-  const { suggestions, isLoading } = useLocationSearch(debouncedValue, queryType);
+  const { suggestions, isLoading, error } = useLocationSearch(debouncedValue, queryType);
 
   const handleSelect = (location: LocationResult) => {
     setInputValue(location.name);
@@ -70,6 +69,10 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
           setActiveIndex(-1);
         }}
         onKeyDown={handleKeyDown}
+        onBlur={() => {
+          setIsOpen(false);
+          setActiveIndex(-1);
+        }}
         className="w-full rounded-lg border bg-white/90 px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
       />
 
@@ -81,13 +84,19 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
         >
           {isLoading && <li className="px-4 py-2 text-sm text-gray-500">Searching...</li>}
 
-          {!isLoading && suggestions.length === 0 && (
+          {!isLoading && Boolean(error) && (
+            <li className="px-4 py-2 text-sm text-red-600">
+              Couldn't load results. Please try again.
+            </li>
+          )}
+
+          {!isLoading && !Boolean(error) && suggestions.length === 0 && (
             <li className="px-4 py-2 text-sm text-gray-500">No results found</li>
           )}
 
           {suggestions.map((suggestion, index) => (
             <li
-              key={suggestion.name}
+              key={`${suggestion.name}-${suggestion.latitude}-${suggestion.longitude}`}
               id={`${listboxId}-option-${index}`}
               role="option"
               aria-selected={index === activeIndex}

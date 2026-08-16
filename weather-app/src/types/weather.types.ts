@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface WeatherApiResponse {
   current: {
     temperature_2m: number;
@@ -42,7 +44,7 @@ export interface WeatherTheme {
 
 export interface WeatherProviderProps {
   weatherData: WeatherData | undefined;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 

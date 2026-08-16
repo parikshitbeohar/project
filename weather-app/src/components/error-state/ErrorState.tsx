@@ -1,3 +1,5 @@
+import { StatusCard } from '../status-card/StatusCard';
+
 interface ErrorStateProps {
   onRetry: () => void;
   message?: string;
@@ -5,7 +7,7 @@ interface ErrorStateProps {
 
 export const ErrorState = ({ onRetry, message }: ErrorStateProps) => {
   return (
-    <div className="flex flex-col items-center gap-3 p-6 text-center" role="alert">
+    <StatusCard role="alert">
       <p className="text-sm text-gray-600">
         {message ?? "We couldn't load the weather for this location. Please try again."}
       </p>
@@ -15,6 +17,6 @@ export const ErrorState = ({ onRetry, message }: ErrorStateProps) => {
       >
         Try again
       </button>
-    </div>
+    </StatusCard>
   );
 }

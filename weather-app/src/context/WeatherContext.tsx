@@ -1,5 +1,3 @@
-// context/WeatherContext.tsx
-
 import { createContext, useContext } from 'react';
 import type {
   UseWeatherThemeOptions,

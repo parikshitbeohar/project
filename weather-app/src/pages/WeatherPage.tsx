@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useWeather } from '../hooks/useWeather';
 import type { LocationResult } from '../types/location.types';
 import { WeatherThemeProvider as WeatherThemeProvider } from '../context/WeatherContext';
@@ -6,6 +6,8 @@ import { WeatherDashboard } from '../components/weather-dashboard/WeatherDashboa
 import { Footer } from '../components/footer/footer';
 import Header from '../components/header/Header';
 import { ErrorState } from '../components/error-state/ErrorState';
+import { Loader } from '../components/loader/Loader';
+import { Overlay } from '../components/overlay/Overlay';
 
 export const WeatherPage = () => {
   const DEFAULT_LOCATION: LocationResult = {
@@ -18,25 +20,65 @@ export const WeatherPage = () => {
 
   const { data: weatherData, isLoading, error, retry } = useWeather(selectedLocation ?? DEFAULT_LOCATION);
 
+  const isBlocked = isLoading || Boolean(error);
+
+  // Track whatever was last focused inside the main content (e.g. the
+  // search input) while it was still interactive. We can't just read
+  // document.activeElement at block-time — by then `inert` has already
+  // blurred it to <body> — so it has to be captured as focus moves around
+  // during normal, unblocked use.
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
+  const wasBlockedRef = useRef(isBlocked);
+
+  useEffect(() => {
+    if (wasBlockedRef.current && !isBlocked) {
+      const target = lastFocusedRef.current;
+      if (target && document.contains(target)) {
+        target.focus();
+      }
+    }
+    wasBlockedRef.current = isBlocked;
+  }, [isBlocked]);
+
   const renderErrorState = () => {
-    return error && <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"><ErrorState onRetry={retry} /></div>;
+    if (!error) return null;
+
+    const message = error instanceof Error ? error.message : undefined;
+
+    return (
+      <Overlay>
+        <ErrorState onRetry={retry} message={message} />
+      </Overlay>
+    );
   };
 
   const renderLoader = () => {
-    return isLoading && <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">Loading...</div>;
+    if (!isLoading) return null;
+
+    return (
+      <Overlay>
+        <Loader />
+      </Overlay>
+    );
   };
 
   const renderDashboard = () => {
     return (
       <WeatherThemeProvider weatherData={weatherData}>
-      {weatherData && <WeatherDashboard onLocationSelect={setSelectedLocation} weatherData={weatherData} />}
+      <WeatherDashboard onLocationSelect={setSelectedLocation} weatherData={weatherData} />
       </WeatherThemeProvider>
     );
   };
 
   return (
     <>
-      <div className="flex flex-col min-h-screen bg-gradient-to-b from-amber-100 via-sky-200 to-blue-300">
+      <div
+        className="flex flex-col min-h-screen bg-gradient-to-b from-amber-100 via-sky-200 to-blue-300"
+        inert={isBlocked}
+        onFocusCapture={(e) => {
+          lastFocusedRef.current = e.target as HTMLElement;
+        }}
+      >
         <Header />
         {renderDashboard()}
         <Footer />

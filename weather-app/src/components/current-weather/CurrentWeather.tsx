@@ -2,8 +2,13 @@ import { useWeatherTheme } from '../../context/WeatherContext';
 import type { WeatherData } from '../../types/weather.types';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
-export const CurrentWeather = ({ weatherData }: { weatherData: WeatherData }) => {
+export const CurrentWeather = ({ weatherData }: { weatherData: WeatherData | undefined }) => {
   const theme = useWeatherTheme();
+
+  if (!weatherData) {
+    return null;
+  }
+
   const { location, currentTemp, windSpeed, humidity, currentCondition } = weatherData;
 
   const renderInfo = () => {
