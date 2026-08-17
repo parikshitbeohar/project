@@ -20,8 +20,8 @@ export interface PostcodeResponse {
     admin_district: string;
     region: string;
     country: string;
-    latitude: number;   
-    longitude: number;  
+    latitude: number;
+    longitude: number;
   };
 }
 

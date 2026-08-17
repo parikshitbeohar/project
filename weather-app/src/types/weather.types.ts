@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface WeatherApiResponse {
   current: {
     temperature_2m: number;
@@ -19,7 +21,6 @@ export interface WeatherData {
   location: string;
   currentTemp: number;
   currentCondition: number;
-  currentConditionCode: number;
   windSpeed: number;
   humidity: number;
   isDaytime: boolean; 
@@ -41,10 +42,9 @@ export interface WeatherTheme {
   accentColor: string;
 }
 
-export interface WeatherThemeProviderProps {
-  conditionCode: number | null;
-  isDaytime: boolean | null;
-  children: React.ReactNode;
+export interface WeatherProviderProps {
+  weatherData: WeatherData | undefined;
+  children: ReactNode;
 }
 
 

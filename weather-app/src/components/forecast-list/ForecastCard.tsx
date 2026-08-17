@@ -1,4 +1,4 @@
-import { useWeatherTheme } from '../../context/WeatherThemeContext';
+import { useWeatherTheme } from '../../context/WeatherContext';
 import type { DayForecast } from '../../types/weather.types';
 import { WeatherCondition } from '../weather-condition/WeatherCondition';
 
