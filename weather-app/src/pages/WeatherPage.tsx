@@ -22,11 +22,6 @@ export const WeatherPage = () => {
 
   const isBlocked = isLoading || Boolean(error);
 
-  // Track whatever was last focused inside the main content (e.g. the
-  // search input) while it was still interactive. We can't just read
-  // document.activeElement at block-time — by then `inert` has already
-  // blurred it to <body> — so it has to be captured as focus moves around
-  // during normal, unblocked use.
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const wasBlockedRef = useRef(isBlocked);
 

@@ -6,12 +6,6 @@ interface OverlayProps {
 
 export const Overlay = ({ children }: OverlayProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Move focus into the overlay as soon as it mounts, so keyboard/screen
-  // reader users land on the dialog content (e.g. "Try again") instead of
-  // being left on <body> once the background becomes inert. Restoring focus
-  // back to whatever was focused before is handled by the parent, since it
-  // knows what that was.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;

@@ -100,6 +100,7 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
               id={`${listboxId}-option-${index}`}
               role="option"
               aria-selected={index === activeIndex}
+              onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleSelect(suggestion)}
               onMouseEnter={() => setActiveIndex(index)}
               className={`cursor-pointer px-4 py-2 text-sm ${

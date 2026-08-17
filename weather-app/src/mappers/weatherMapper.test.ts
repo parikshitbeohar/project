@@ -2,10 +2,6 @@ import { describe, it, expect, afterEach, vi } from 'vitest';
 import { mapWeatherResponse } from './weatherMapper';
 import type { WeatherApiResponse } from '../types/weather.types';
 
-// Mirrors the private DAY_LABELS array in weatherMapper.ts. Deriving the
-// expected label the same way the source does (rather than hardcoding
-// "Wed"/"Thu"/...) keeps this test correct regardless of the machine's
-// local timezone.
 const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const buildRaw = (overrides: Partial<WeatherApiResponse> = {}): WeatherApiResponse => ({

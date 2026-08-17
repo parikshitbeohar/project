@@ -18,7 +18,6 @@ describe('mapCitySearchResponse', () => {
   });
 
   it('returns an empty array when the response has no results', () => {
-    // Simulates a malformed/empty provider response rather than the happy path.
     expect(mapCitySearchResponse({} as CitySearchResponse)).toEqual([]);
   });
 });

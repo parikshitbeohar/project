@@ -13,9 +13,6 @@ export interface LocationSearchResult {
   error: unknown;
 }
 
-// Mirrors the full postcodes.io response shape. `status` and `region` aren't
-// read by mapPostcodeResponse today, but are kept here (rather than trimmed)
-// since this type documents the raw API contract, not just what we consume.
 export interface PostcodeResponse {
   status: number;
   result: {
