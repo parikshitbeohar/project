@@ -1,12 +1,6 @@
 import type { WeatherApiResponse, WeatherData } from '../types/weather.types';
 
 const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// The only place in the app that knows the shape of the weather provider's
-// JSON response. If the provider's response shape changes — or you switch
-// providers entirely — this is the only function that needs to change.
-// Everything above this layer (hooks, context, components) only ever sees
-// the stable `WeatherData` domain type, never the raw response.
 export const mapWeatherResponse = (raw: WeatherApiResponse, locationName: string): WeatherData => {
   const now = new Date();
   const todaySunrise = new Date(raw.daily.sunrise[0]);
