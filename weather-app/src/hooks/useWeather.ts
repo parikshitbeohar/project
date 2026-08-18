@@ -19,7 +19,7 @@ export const useWeather = (location: LocationResult): UseWeatherResult => {
     shouldFetch ? ['weather', location.latitude, location.longitude] : null,
     () => fetchWeather(location.latitude!, location.longitude!, location.name),
     {
-      revalidateOnFocus: true,
+      revalidateOnFocus: false,
       revalidateOnReconnect: true,
       revalidateIfStale: false,
       refreshInterval: FIFTEEN_MINUTES_MS,

@@ -90,5 +90,5 @@ tests/            Playwright end-to-end tests
 ## Known limitations / possible next steps
 
 - No persistence — search history and the selected location reset on refresh
-- Weather data revalidates automatically on reconnect and when the tab regains focus (on top of the 15-minute interval); location search results don't, since that fetch is re-triggered by typing anyway
+- Weather data revalidates automatically on network reconnect (on top of the 15-minute interval); it deliberately does not revalidate on window focus, to avoid an extra fetch every time the browser tab regains focus. Location search results don't revalidate on either, since that fetch is re-triggered by typing anyway
 - The 15-minute background refresh only affects the currently selected location, not any others

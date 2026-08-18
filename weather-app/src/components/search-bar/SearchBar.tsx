@@ -67,7 +67,6 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
         placeholder="Search city or postcode..."
         value={inputValue}
         onChange={(e) => {
-          lastSelectedNameRef.current = null;
           setInputValue(e.target.value);
           setIsOpen(true);
           setActiveIndex(-1);
