@@ -87,7 +87,7 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
         >
           {isLoading && <li className="px-4 py-2 text-sm text-gray-500">Searching...</li>}
 
-          {!isLoading && error && (
+          {!isLoading && Boolean(error) && (
             <li className="px-4 py-2 text-sm text-red-600">
               Couldn't load results. Please try again.
             </li>
