@@ -2,9 +2,9 @@
 
 A weather lookup app built with React, TypeScript, and Vite. Search by city name or UK postcode and see current conditions plus an upcoming forecast, with a background theme that shifts to match the weather.
 
-**Live demo:** _add your deployed URL here once it's live_
+**Live demo:** https://weather-app-git-master-parikshit4.vercel.app/
 
-## Features
+## Features 
 
 - Search by city name or UK postcode — the input auto-detects which one you've typed and queries the right API
 - Debounced, keyboard-navigable autocomplete (arrow keys, Enter, Escape, click)
