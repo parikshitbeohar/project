@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { SearchBar } from './SearchBar';
 import { useLocationSearch } from '../../hooks/useLocationSearch';
 
@@ -22,26 +21,32 @@ describe('SearchBar debounce timing', () => {
     vi.useRealTimers();
   });
 
-  it('does not re-query the selected location while clearing the input and the debounce timer is still catching up', async () => {
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+  it('does not re-query the selected location while clearing the input and the debounce timer is still catching up', () => {
     mockUseLocationSearch.mockReturnValue({ suggestions, isLoading: false, error: undefined });
     render(<SearchBar onLocationSelect={vi.fn()} />);
 
     const input = screen.getByRole('combobox');
-    await user.type(input, 'Leeds');
-    await act(() => vi.advanceTimersByTimeAsync(500));
+    fireEvent.change(input, { target: { value: 'Leeds' } });
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
 
-    const options = screen.getAllByRole('option');
-    await user.click(options[0]);
-    await act(() => vi.advanceTimersByTimeAsync(500));
+    fireEvent.click(screen.getByRole('option'));
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
 
     mockUseLocationSearch.mockClear();
 
-    await user.clear(input);
-    await act(() => vi.advanceTimersByTimeAsync(100));
+    fireEvent.change(input, { target: { value: '' } });
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
 
     expect(mockUseLocationSearch).not.toHaveBeenCalledWith('Leeds, United Kingdom', 'city');
 
-    await act(() => vi.advanceTimersByTimeAsync(500));
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
   });
 });
