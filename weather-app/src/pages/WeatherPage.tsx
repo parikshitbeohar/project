@@ -10,6 +10,7 @@ import { Loader } from '../components/loader/Loader';
 import { Overlay } from '../components/overlay/Overlay';
 
 export const WeatherPage = () => {
+
   const DEFAULT_LOCATION: LocationResult = {
     name: 'London, United Kingdom',
     latitude: 51.5074,

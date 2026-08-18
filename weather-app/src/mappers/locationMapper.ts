@@ -1,8 +1,5 @@
 import type { CitySearchResponse, PostcodeResponse, LocationResult } from '../types/location.types';
 
-// The only place that knows the shape of the city-search provider's JSON.
-// Swap providers or reshape the response and only this function changes —
-// hooks/components only ever see `LocationResult[]`.
 export const mapCitySearchResponse = (data: CitySearchResponse): LocationResult[] => {
   if (!data.results) return [];
 
@@ -13,7 +10,6 @@ export const mapCitySearchResponse = (data: CitySearchResponse): LocationResult[
   }));
 };
 
-// Same idea for the postcode-lookup provider.
 export const mapPostcodeResponse = (data: PostcodeResponse): LocationResult[] => {
   return [
     {
