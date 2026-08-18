@@ -14,13 +14,16 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const listboxId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastSelectedNameRef = useRef<string | null>(null);
 
-  const debouncedValue = useDebounce(inputValue, 400);
+  const debouncedValue = useDebounce(inputValue, 500);
   const queryType = isPostcode(debouncedValue) ? 'postcode' : 'city';
+  const searchQuery = debouncedValue === lastSelectedNameRef.current ? '' : debouncedValue;
 
-  const { suggestions, isLoading, error } = useLocationSearch(debouncedValue, queryType);
+  const { suggestions, isLoading, error } = useLocationSearch(searchQuery, queryType);
 
   const handleSelect = (location: LocationResult) => {
+    lastSelectedNameRef.current = location.name;
     setInputValue(location.name);
     onLocationSelect(location);
     setIsOpen(false);
@@ -64,6 +67,7 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
         placeholder="Search city or postcode..."
         value={inputValue}
         onChange={(e) => {
+          lastSelectedNameRef.current = null;
           setInputValue(e.target.value);
           setIsOpen(true);
           setActiveIndex(-1);
