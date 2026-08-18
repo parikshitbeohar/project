@@ -72,7 +72,9 @@ describe('useLocationSearch', () => {
   });
 
   it('surfaces a rejected fetch as the error result', async () => {
-    mockFetchCitySuggestions.mockRejectedValue(new Error('Request failed: 500 Internal Server Error'));
+    mockFetchCitySuggestions.mockRejectedValue(
+      new Error('Request failed: 500 Internal Server Error')
+    );
 
     const { result } = renderHook(() => useLocationSearch('Lon', 'city'), { wrapper });
 

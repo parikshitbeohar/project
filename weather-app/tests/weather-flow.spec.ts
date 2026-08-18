@@ -25,7 +25,7 @@ test.describe('Sky Check weather app', () => {
     await expect(page.getByText('Paris, France')).toBeVisible();
   });
 
-  test('searches by UK postcode and shows the matched district\'s weather', async ({ page }) => {
+  test("searches by UK postcode and shows the matched district's weather", async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('status')).toBeHidden({ timeout: 15000 });
 

@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import type {
   UseWeatherThemeOptions,
   WeatherTheme,
-  WeatherProviderProps
+  WeatherProviderProps,
 } from '../types/weather.types';
 import { getWeatherCategory } from '../utils/weatherCategory';
 

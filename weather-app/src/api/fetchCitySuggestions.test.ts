@@ -26,7 +26,9 @@ describe('fetchCitySuggestions', () => {
 
   it('maps the response through mapCitySearchResponse', async () => {
     mockFetchJson.mockResolvedValue({
-      results: [{ name: 'London', country: 'United Kingdom', latitude: 51.5074, longitude: -0.1278 }],
+      results: [
+        { name: 'London', country: 'United Kingdom', latitude: 51.5074, longitude: -0.1278 },
+      ],
     });
 
     const result = await fetchCitySuggestions('London');

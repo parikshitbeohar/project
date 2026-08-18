@@ -8,8 +8,7 @@ export const useLocationSearch = (query: string, queryType: QueryType): Location
 
   const { data, error, isLoading } = useSWR(
     shouldFetch ? ['locationSearch', queryType, query] : null,
-    () => (queryType === 'postcode' ? fetchPostcodeLookup(query) : fetchCitySuggestions(query))
-    ,
+    () => (queryType === 'postcode' ? fetchPostcodeLookup(query) : fetchCitySuggestions(query)),
     {
       revalidateOnFocus: false,
       revalidateIfStale: false,

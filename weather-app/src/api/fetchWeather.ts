@@ -17,4 +17,4 @@ export const fetchWeather = async (
   const raw = await fetchJson<WeatherApiResponse>(url);
 
   return mapWeatherResponse(raw, locationName);
-}
+};

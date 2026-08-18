@@ -7,15 +7,13 @@ export const Footer = () => {
             About Sky Check
           </h2>
           <p className="text-sm text-gray-600">
-            Sky Check gives you fast, accurate weather for any city or UK postcode —
-            built with real-time data and a clean, simple interface designed to get
-            you the forecast without the clutter.
+            Sky Check gives you fast, accurate weather for any city or UK postcode — built with
+            real-time data and a clean, simple interface designed to get you the forecast without
+            the clutter.
           </p>
         </div>
         <div>
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">
-            FAQ
-          </h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">FAQ</h2>
           <ul className="space-y-2 text-sm text-gray-600">
             <li>
               <span className="font-medium text-gray-800">Is Sky Check free to use?</span>
@@ -31,10 +29,14 @@ export const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-600">
             <li>Email: hello@skycheck.example</li>
             <li>
-              <a href="#" className="hover:underline">Privacy Policy</a>
+              <a href="#" className="hover:underline">
+                Privacy Policy
+              </a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Terms of Use</a>
+              <a href="#" className="hover:underline">
+                Terms of Use
+              </a>
             </li>
           </ul>
         </div>
@@ -45,4 +47,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-}
+};
