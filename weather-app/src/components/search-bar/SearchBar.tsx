@@ -6,7 +6,7 @@ import type { LocationResult } from '../../types/location.types';
 
 interface SearchBarProps {
   onLocationSelect: (location: LocationResult) => void;
-  }
+}
 
 export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState('');

@@ -4,7 +4,7 @@ A weather lookup app built with React, TypeScript, and Vite. Search by city name
 
 **Live demo:** https://weather-app-git-master-parikshit4.vercel.app/
 
-## Features 
+## Features
 
 - Search by city name or UK postcode â€” the input auto-detects which one you've typed and queries the right API
 - Debounced, keyboard-navigable autocomplete (arrow keys, Enter, Escape, click)
@@ -35,17 +35,17 @@ The app runs at `http://localhost:5173`. No environment variables are required â
 
 ## Available scripts
 
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Type-check and build for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format the codebase with Prettier |
-| `npm test` | Run unit and integration tests once |
-| `npm run test:watch` | Run unit and integration tests in watch mode |
-| `npm run test:coverage` | Run tests with a coverage report |
-| `npm run test:e2e` | Run the Playwright end-to-end tests (Chromium) |
+| Command                 | What it does                                   |
+| ----------------------- | ---------------------------------------------- |
+| `npm run dev`           | Start the Vite dev server                      |
+| `npm run build`         | Type-check and build for production            |
+| `npm run preview`       | Preview the production build locally           |
+| `npm run lint`          | Run ESLint                                     |
+| `npm run format`        | Format the codebase with Prettier              |
+| `npm test`              | Run unit and integration tests once            |
+| `npm run test:watch`    | Run unit and integration tests in watch mode   |
+| `npm run test:coverage` | Run tests with a coverage report               |
+| `npm run test:e2e`      | Run the Playwright end-to-end tests (Chromium) |
 
 ## Testing
 

@@ -1,48 +1,81 @@
 /* index.css */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Sun — slow, ambient rotation */
   --animate-sun-spin: sun-spin 8s linear infinite;
   @keyframes sun-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   /* Cloud / fog — gentle horizontal drift */
   --animate-cloud-drift: cloud-drift 4s ease-in-out infinite;
   @keyframes cloud-drift {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(4px); }
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
   }
 
   /* Rain / drizzle — subtle vertical bob, suggesting falling droplets */
   --animate-rain-fall: rain-fall 1.2s ease-in-out infinite;
   @keyframes rain-fall {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(3px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(3px);
+    }
   }
 
   /* Snow — slower, gentler falling drift with slight rotation */
   --animate-snow-fall: snow-fall 3s ease-in-out infinite;
   @keyframes snow-fall {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(4px) rotate(8deg); }
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(4px) rotate(8deg);
+    }
   }
 
   /* Thunderstorm — sharp opacity flicker, like distant lightning */
   --animate-storm-flash: storm-flash 2.5s ease-in-out infinite;
   @keyframes storm-flash {
-    0%, 90%, 100% { opacity: 1; }
-    93% { opacity: 0.5; }
-    96% { opacity: 1; }
+    0%,
+    90%,
+    100% {
+      opacity: 1;
+    }
+    93% {
+      opacity: 0.5;
+    }
+    96% {
+      opacity: 1;
+    }
   }
 
   /* One-time entrance, used when a condition-specific animation isn't wanted */
   --animate-fade-in: fade-in 0.5s ease-out;
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

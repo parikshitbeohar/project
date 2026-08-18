@@ -12,8 +12,8 @@ export interface WeatherApiResponse {
     weather_code: number[];
     temperature_2m_max: number[];
     temperature_2m_min: number[];
-    sunrise: string[]; 
-    sunset: string[]; 
+    sunrise: string[];
+    sunset: string[];
   };
 }
 
@@ -23,10 +23,9 @@ export interface WeatherData {
   currentCondition: number;
   windSpeed: number;
   humidity: number;
-  isDaytime: boolean; 
+  isDaytime: boolean;
   forecast: DayForecast[];
 }
-
 
 export interface DayForecast {
   date: string;
@@ -46,7 +45,6 @@ export interface WeatherProviderProps {
   weatherData: WeatherData | undefined;
   children: ReactNode;
 }
-
 
 export interface UseWeatherThemeOptions {
   conditionCode?: number;

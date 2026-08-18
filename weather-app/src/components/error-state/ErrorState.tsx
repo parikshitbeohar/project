@@ -19,4 +19,4 @@ export const ErrorState = ({ onRetry, message }: ErrorStateProps) => {
       </button>
     </StatusCard>
   );
-}
+};

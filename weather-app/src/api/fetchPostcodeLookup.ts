@@ -1,7 +1,7 @@
-import { fetchJson } from "./fetchJson";
-import type { PostcodeResponse, LocationResult } from "../types/location.types";
-import { POSTCODE_API_BASE } from "../config/apiConfig.ts";
-import { mapPostcodeResponse } from "../mappers/locationMapper";
+import { fetchJson } from './fetchJson';
+import type { PostcodeResponse, LocationResult } from '../types/location.types';
+import { POSTCODE_API_BASE } from '../config/apiConfig.ts';
+import { mapPostcodeResponse } from '../mappers/locationMapper';
 
 export const fetchPostcodeLookup = async (query: string): Promise<LocationResult[]> => {
   try {
@@ -15,4 +15,4 @@ export const fetchPostcodeLookup = async (query: string): Promise<LocationResult
     }
     throw error;
   }
-}
+};

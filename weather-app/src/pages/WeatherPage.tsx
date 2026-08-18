@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useWeather } from '../hooks/useWeather';
 import type { LocationResult } from '../types/location.types';
-import { WeatherThemeProvider as WeatherThemeProvider } from '../context/WeatherContext';
+import { WeatherThemeProvider } from '../context/WeatherContext';
 import { WeatherDashboard } from '../components/weather-dashboard/WeatherDashboard';
 import { Footer } from '../components/footer/footer';
 import Header from '../components/header/Header';
@@ -9,17 +9,21 @@ import { ErrorState } from '../components/error-state/ErrorState';
 import { Loader } from '../components/loader/Loader';
 import { Overlay } from '../components/overlay/Overlay';
 
+const DEFAULT_LOCATION: LocationResult = {
+  name: 'London, United Kingdom',
+  latitude: 51.5074,
+  longitude: -0.1278,
+};
+
 export const WeatherPage = () => {
-
-  const DEFAULT_LOCATION: LocationResult = {
-    name: 'London, United Kingdom',
-    latitude: 51.5074,
-    longitude: -0.1278,
-  };
-
   const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(DEFAULT_LOCATION);
 
-  const { data: weatherData, isLoading, error, retry } = useWeather(selectedLocation ?? DEFAULT_LOCATION);
+  const {
+    data: weatherData,
+    isLoading,
+    error,
+    retry,
+  } = useWeather(selectedLocation ?? DEFAULT_LOCATION);
 
   const isBlocked = isLoading || Boolean(error);
 
@@ -61,7 +65,7 @@ export const WeatherPage = () => {
   const renderDashboard = () => {
     return (
       <WeatherThemeProvider weatherData={weatherData}>
-      <WeatherDashboard onLocationSelect={setSelectedLocation} weatherData={weatherData} />
+        <WeatherDashboard onLocationSelect={setSelectedLocation} weatherData={weatherData} />
       </WeatherThemeProvider>
     );
   };
