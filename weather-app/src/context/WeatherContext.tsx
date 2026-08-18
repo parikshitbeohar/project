@@ -89,6 +89,7 @@ export const WeatherThemeProvider = ({ weatherData, children }: WeatherProviderP
   return <WeatherContext.Provider value={theme}>{children}</WeatherContext.Provider>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useWeatherTheme = (options?: UseWeatherThemeOptions): WeatherTheme => {
   const contextTheme = useContext(WeatherContext);
 
