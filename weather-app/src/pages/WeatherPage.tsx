@@ -43,11 +43,9 @@ export const WeatherPage = () => {
   const renderErrorState = () => {
     if (!error) return null;
 
-    const message = error instanceof Error ? error.message : undefined;
-
     return (
       <Overlay>
-        <ErrorState onRetry={retry} message={message} />
+        <ErrorState onRetry={retry} />
       </Overlay>
     );
   };
