@@ -14,16 +14,16 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const listboxId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
-  const lastSelectedNameRef = useRef<string | null>(null);
+  const [lastSelectedName, setLastSelectedName] = useState<string | null>(null);
 
   const debouncedValue = useDebounce(inputValue, 500);
   const queryType = isPostcode(debouncedValue) ? 'postcode' : 'city';
-  const searchQuery = debouncedValue === lastSelectedNameRef.current ? '' : debouncedValue;
+  const searchQuery = debouncedValue === lastSelectedName ? '' : debouncedValue;
 
   const { suggestions, isLoading, error } = useLocationSearch(searchQuery, queryType);
 
   const handleSelect = (location: LocationResult) => {
-    lastSelectedNameRef.current = location.name;
+    setLastSelectedName(location.name);
     setInputValue(location.name);
     onLocationSelect(location);
     setIsOpen(false);
@@ -87,13 +87,13 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
         >
           {isLoading && <li className="px-4 py-2 text-sm text-gray-500">Searching...</li>}
 
-          {!isLoading && Boolean(error) && (
+          {!isLoading && error && (
             <li className="px-4 py-2 text-sm text-red-600">
               Couldn't load results. Please try again.
             </li>
           )}
 
-          {!isLoading && !Boolean(error) && suggestions.length === 0 && (
+          {!isLoading && !error && suggestions.length === 0 && (
             <li className="px-4 py-2 text-sm text-gray-500">No results found</li>
           )}
 
