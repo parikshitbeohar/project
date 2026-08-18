@@ -57,6 +57,8 @@ Testing is split across three layers:
 
 **End-to-end tests**, under `tests/`, drive a real Chromium browser against the running app with nothing mocked at all — they hit the live Open-Meteo and postcodes.io APIs. Firefox and WebKit are left commented out in `playwright.config.ts`: Firefox in particular uses its own certificate trust store rather than the OS one, which can hang against the live API on networks that do TLS inspection (e.g. some corporate networks/VPNs). That's an environment quirk, not an app or test defect — Chromium and WebKit both pass the identical test against the same live endpoints.
 
+All of this runs automatically via GitHub Actions on every push and pull request: lint, type-check/build, and the unit and integration tests run as a fast required check (`.github/workflows/ci.yml`), while the Playwright E2E suite runs as a separate, slower job (`.github/workflows/playwright.yml`) so it doesn't block on the faster checks.
+
 ## Project structure
 
 ```
@@ -88,6 +90,5 @@ tests/            Playwright end-to-end tests
 ## Known limitations / possible next steps
 
 - No persistence — search history and the selected location reset on refresh
-- No offline handling beyond SWR's default retry-on-reconnect being disabled
+- Weather data revalidates automatically on reconnect and when the tab regains focus (on top of the 15-minute interval); location search results don't, since that fetch is re-triggered by typing anyway
 - The 15-minute background refresh only affects the currently selected location, not any others
-- CI isn't wired up yet to run `test`, `test:coverage`, or `test:e2e` automatically on push
