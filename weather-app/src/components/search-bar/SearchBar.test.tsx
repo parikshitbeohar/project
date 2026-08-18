@@ -48,6 +48,18 @@ describe('SearchBar', () => {
     expect(screen.getByRole('combobox')).toHaveValue('London, Canada');
   });
 
+  it('does not search again for the selected suggestion\'s own "name, country" text', async () => {
+    mockUseLocationSearch.mockReturnValue({ suggestions, isLoading: false, error: undefined });
+    const user = userEvent.setup();
+    render(<SearchBar onLocationSelect={vi.fn()} />);
+
+    await user.type(screen.getByRole('combobox'), 'London');
+    const options = await screen.findAllByRole('option');
+    await user.click(options[1]);
+
+    expect(mockUseLocationSearch).not.toHaveBeenCalledWith('London, Canada', 'city');
+  });
+
   it('supports moving through suggestions and selecting with the keyboard', async () => {
     mockUseLocationSearch.mockReturnValue({ suggestions, isLoading: false, error: undefined });
     const onLocationSelect = vi.fn();
