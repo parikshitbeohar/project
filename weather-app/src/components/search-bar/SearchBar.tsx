@@ -1,4 +1,4 @@
-import { useState, useRef, useId } from 'react';
+import { useState, useId } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useLocationSearch } from '../../hooks/useLocationSearch';
 import { isPostcode } from '../../utils/postcodeDetector';
@@ -13,7 +13,6 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isOpen, setIsOpen] = useState(false);
   const listboxId = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
   const [lastSelectedName, setLastSelectedName] = useState<string | null>(null);
 
   const debouncedValue = useDebounce(inputValue, 500);
@@ -56,7 +55,6 @@ export const SearchBar = ({ onLocationSelect }: SearchBarProps) => {
   return (
     <div className="relative w-full max-w-md">
       <input
-        ref={inputRef}
         type="text"
         role="combobox"
         aria-expanded={isOpen}
