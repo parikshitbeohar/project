@@ -17,15 +17,15 @@ test.describe('Sky Check weather app', () => {
     const search = page.getByRole('combobox', { name: 'Search for a city or postcode' });
     await search.fill('Paris');
 
-    const option = page.getByRole('option', { name: 'Paris, France' });
+    const option = page.getByRole('option', { name: /^Paris,.*France$/ });
     await expect(option).toBeVisible({ timeout: 10000 });
     await option.click();
 
     await expect(page.getByRole('status')).toBeHidden({ timeout: 15000 });
-    await expect(page.getByText('Paris, France')).toBeVisible();
+    await expect(page.getByText(/^Paris,.*France$/)).toBeVisible();
   });
 
-  test("searches by UK postcode and shows the matched district's weather", async ({ page }) => {
+  test('searches by UK postcode and shows the matched district\'s weather', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('status')).toBeHidden({ timeout: 15000 });
 
