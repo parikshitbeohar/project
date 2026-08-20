@@ -20,6 +20,20 @@ describe('mapCitySearchResponse', () => {
   it('returns an empty array when the response has no results', () => {
     expect(mapCitySearchResponse({} as CitySearchResponse)).toEqual([]);
   });
+
+  it('includes the state/region when present, so same-named places in the same country stay distinct', () => {
+    const raw: CitySearchResponse = {
+      results: [
+        { name: 'Leeds', admin1: 'Alabama', country: 'United States', latitude: 33.548, longitude: -86.5411 },
+        { name: 'Leeds', admin1: 'Maine', country: 'United States', latitude: 44.3009, longitude: -70.1445 },
+      ],
+    };
+
+    expect(mapCitySearchResponse(raw)).toEqual([
+      { name: 'Leeds, Alabama, United States', latitude: 33.548, longitude: -86.5411 },
+      { name: 'Leeds, Maine, United States', latitude: 44.3009, longitude: -70.1445 },
+    ]);
+  });
 });
 
 describe('mapPostcodeResponse', () => {

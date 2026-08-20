@@ -4,7 +4,9 @@ export const mapCitySearchResponse = (data: CitySearchResponse): LocationResult[
   if (!data.results) return [];
 
   return data.results.map((result) => ({
-    name: `${result.name}, ${result.country}`,
+    name: result.admin1
+      ? `${result.name}, ${result.admin1}, ${result.country}`
+      : `${result.name}, ${result.country}`,
     latitude: result.latitude,
     longitude: result.longitude,
   }));
