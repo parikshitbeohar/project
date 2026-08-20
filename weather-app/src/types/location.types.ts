@@ -1,7 +1,8 @@
-export type QueryType = 'postcode' | 'city';
+export type QueryType = "postcode" | "city";
+
 
 export interface LocationResult {
-  name: string;
+  name: string;        
   latitude: number;
   longitude: number;
 }
@@ -27,6 +28,7 @@ export interface PostcodeResponse {
 export interface CitySearchResponse {
   results: Array<{
     name: string;
+    admin1?: string;
     country: string;
     latitude: number;
     longitude: number;
